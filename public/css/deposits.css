@@ -1,0 +1,7 @@
+
+.notice-box { background: #fbf6e2; border-left: 5px solid var(--accent-color); padding: 1rem 1.25rem; margin-bottom: 2rem; }
+.notice-box p { margin: 0; }
+#deposit-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+.deposit-card { background: var(--secondary-color); border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; }
+.deposit-card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--background-light); }
+.deposit-card-body { padding: 1.4rem; }

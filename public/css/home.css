@@ -1,0 +1,95 @@
+
+.hero {
+    background:
+        linear-gradient(rgba(139, 0, 0, 0.88), rgba(139, 0, 0, 0.88)),
+        url("../assets/images/hero-banner.jpg") center / cover,
+        var(--primary-color);color: var(--secondary-color);padding: 4.5rem 0;border-bottom: 4px solid var(--accent-color);}
+.hero-inner {display: grid;grid-template-columns: 1.6fr 1fr;gap: 3rem;align-items: center;}
+.hero h1 {color: var(--secondary-color);margin-bottom: 0.4rem;}
+.hero-since {font-family: var(--heading-font);font-size: 1.6rem;color: var(--accent-color);margin: 0 0 1.25rem;}
+.hero-message {color: #f5e3e3;max-width: 40rem;}
+.hero-call {border: 1px solid rgba(255, 215, 0, 0.6);padding: 2rem;text-align: center;}
+.hero-call-year {font-family: var(--heading-font);font-size: 4.5rem;line-height: 1;color: var(--accent-color);margin: 0;}
+.hero-call h2 {color: var(--secondary-color);font-size: 1rem;margin: 1rem 0 0.25rem;}
+.hero-call a {color: var(--secondary-color);font-size: 1.7rem;font-weight: 700;text-decoration: none;font-family: var(--heading-font);}
+.hero :focus-visible {outline-color: var(--accent-color);}
+
+
+.ropa-preview { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+
+
+.filter-buttons { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.5rem 0; }
+.filter-button { display: inline-block; text-decoration: none; padding: 0.55rem 1.2rem; border: 2px solid var(--primary-color); background: var(--secondary-color); color: var(--primary-color); font-weight: 700; border-radius: 4px; cursor: pointer; font-size: 1rem; }
+.filter-button[aria-pressed="true"] { background: var(--primary-color); color: var(--secondary-color); }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
+.loan-card { background: var(--secondary-color); border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; }
+.loan-card img {width: 100%; height: auto; display: block; object-fit: contain; background: var(--background-light);}
+.loan-card-body { padding: 1.1rem; display: flex; flex-direction: column; flex: 1; }
+.loan-card-body p { flex: 1; color: var(--muted-text); }
+
+
+.split-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.split-section img {
+    width: 100%;
+    height: auto;              
+    border-radius: 6px;
+    display: block;
+    background: var(--background-light);}
+.pym-subtitle,
+.offer-subtitle {color: var(--muted-text);font-weight: 600;}
+.offer-amount {font-size: 1.3rem;margin-bottom: 0.25rem;}
+.offer-panel {background: var(--primary-color);color: #d5dcec;}.offer-panel h2,
+.offer-panel h3 {color: var(--secondary-color);}
+.offer-panel .offer-subtitle {color: var(--accent-color);}
+.offer-panel strong {color: var(--accent-color);}
+.offer-panel :focus-visible {outline-color: var(--accent-color);}
+
+
+.affiliates-message { font-family: var(--heading-font); font-size: 1.3rem; color: var(--primary-color); }
+.carousel-title { margin-top: 2rem; }
+.carousel { position: relative; margin-top: 1rem; padding: 0 3rem 2.25rem; }
+.carousel-track { display: flex; gap: 1.25rem; margin: 0; padding: 0.25rem; list-style: none; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; position: relative; }
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-slide { flex: 0 0 calc((100% - 2.5rem) / 3); scroll-snap-align: start; display: flex; }
+.affiliate-card { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; padding: 1.5rem 1.25rem; background: var(--secondary-color); border: 1px solid var(--border-color); border-radius: 6px; text-align: center; }
+.affiliate-logo { display: flex; align-items: center; justify-content: center; width: 100%; height: 110px; }
+.affiliate-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.affiliate-card h4 { margin: 0; color: var(--primary-color); font-family: var(--heading-font); }
+.affiliate-card p { margin: 0; color: var(--muted-text); font-size: 0.95rem; }
+.carousel-btn { position: absolute; top: calc(50% - 1.1rem); width: 2.5rem; height: 2.5rem; border: 1px solid var(--border-color); border-radius: 50%; background: var(--secondary-color); color: var(--primary-color); font-size: 1rem; cursor: pointer; }
+.carousel-btn:hover { border-color: var(--accent-color); background: var(--accent-color); }
+.carousel-prev { left: 0; }
+.carousel-next { right: 0; }
+.carousel-dots { position: absolute; bottom: 0; left: 0; right: 0; display: flex; justify-content: center; gap: 0.5rem; }
+.carousel-dot { width: 0.75rem; height: 0.75rem; padding: 0; border: 1px solid var(--primary-color); border-radius: 50%; background: transparent; cursor: pointer; }
+.carousel-dot.is-active { background: var(--primary-color); }
+.carousel-btn:focus-visible, .carousel-dot:focus-visible, .carousel-track:focus-visible { outline: 3px solid var(--focus-color); outline-offset: 2px; }
+@media (max-width: 900px) { .carousel-slide { flex-basis: calc((100% - 1.25rem) / 2); } }
+@media (max-width: 600px) { .carousel { padding: 0 2.5rem 2.25rem; } .carousel-slide { flex-basis: 100%; } }
+
+
+.testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+.testimonial-card { margin: 0; padding: 1.75rem; background: var(--secondary-color); border-left: 4px solid var(--accent-color); border-radius: 0 6px 6px 0; box-shadow: 0 2px 10px rgba(0, 18, 50, 0.08); }
+.testimonial-card blockquote { margin: 0 0 1.25rem; font-family: var(--heading-font); font-size: 1.05rem; }
+.testimonial-card figcaption { display: flex; align-items: center; gap: 0.9rem; }
+.testimonial-card img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
+
+
+.news-card { background: var(--secondary-color); border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; }
+.news-card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--background-light); }
+.news-card-body { padding: 1.25rem; }
+.news-date { display: block; color: var(--muted-text); font-size: 0.9rem; margin-bottom: 0.4rem; }
+#news-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+
+
+@media (max-width: 768px) {
+    .hero { padding: 3rem 0; }
+    .hero-inner, .split-section { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-call-year { font-size: 3.5rem; }
+}

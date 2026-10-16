@@ -1,0 +1,5 @@
+
+#report-container { display: grid; gap: 1.25rem; max-width: 46rem; }
+.report-card { padding: 1.5rem; background: var(--secondary-color); border: 1px solid var(--border-color); border-left: 5px solid var(--accent-color); border-radius: 0 6px 6px 0; }
+.report-year { font-family: var(--heading-font); font-size: 2.25rem; color: var(--accent-color); margin: 0; line-height: 1; }
+.report-card h2 { font-size: 1.3rem; margin-top: 0.4rem; }
