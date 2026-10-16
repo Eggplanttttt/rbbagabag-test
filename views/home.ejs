@@ -1,0 +1,145 @@
+<%- include("partials/head") %>
+<%- include("partials/header") %>
+
+
+<section class="hero">
+    <div class="container hero-inner">
+        <div>
+            <h1><%= bankInfo.name %></h1>
+            <p class="hero-since"><%= bankInfo.since %></p>
+            <p class="hero-message"><%= hero.message %></p>
+            <a class="btn btn-primary" href="<%= hero.buttonLink %>"><%= hero.buttonText %></a>
+        </div>
+        <div class="hero-call">
+            <p class="hero-call-year" aria-hidden="true">1968</p>
+            <h2><%= hero.callLabel %></h2>
+            <a href="<%= phoneLink(bankInfo.phone) %>"><span><%= bankInfo.phone %></span></a>
+        </div>
+    </div>
+</section>
+
+<section class="section section-light">
+    <div class="container ropa-preview">
+        <div>
+            <h2>ROPA For Sale!!</h2>
+            <p>Real and Other Properties Acquired by the bank are available for sale.</p>
+        </div>
+        <a class="btn btn-primary" href="/ropa">See properties for sale</a>
+    </div>
+</section>
+
+<section class="section" id="needs">
+    <div class="container">
+        <h2><%= financialNeeds.title %></h2>
+        <p class="section-intro"><%= financialNeeds.message %></p>
+        <div class="filter-buttons" role="group" aria-label="Filter loans by type">
+            <% loanTypes.forEach(function (type) {
+                const active = type === selectedType;
+                const label = type === "All" ? "All Loans" : type + " Loan"; %>
+            <a class="filter-button" href="/?type=<%= type %>#needs" aria-pressed="<%= active %>"<% if (active) { %> aria-current="true"<% } %>><%= label %></a>
+            <% }) %>
+        </div>
+        <div class="card-grid" id="loan-container">
+            <% loans.forEach(function (loan) { %>
+                <%- include("partials/loan-card", { loan: loan }) %>
+            <% }) %>
+        </div>
+    </div>
+</section>
+
+
+<section class="section section-light">
+    <div class="container split-section" id="pym-container">
+        <img src="<%= asset(protectYourMoney.image) %>" alt="<%= protectYourMoney.imageAlt %>" loading="lazy">
+        <div class="pym-text">
+            <h2><%= protectYourMoney.title %></h2>
+            <p class="pym-subtitle"><%= protectYourMoney.subtitle %></p>
+            <h3><%= protectYourMoney.heading %></h3>
+            <p><%= protectYourMoney.message %></p>
+            <a class="btn btn-primary" href="<%= protectYourMoney.buttonLink %>" target="_blank" rel="noopener"><%= protectYourMoney.buttonText %></a>
+        </div>
+    </div>
+</section>
+
+
+<section class="section offer-panel">
+    <div class="container split-section" id="offer-container">
+        <img src="<%= asset(latestOffer.image) %>" alt="<%= latestOffer.imageAlt %>" loading="lazy">
+        <div class="offer-text">
+            <h2><%= latestOffer.title %></h2>
+            <p class="offer-subtitle"><%= latestOffer.subtitle %></p>
+            <h3><%= latestOffer.loanName %></h3>
+            <p><%= latestOffer.description %></p>
+            <p class="offer-amount">Loan up to <strong><%= latestOffer.maximumAmount %></strong></p>
+            <p>For as low as <strong><%= latestOffer.interestRate %></strong> interest rate</p>
+            <a class="btn btn-primary" href="<%= latestOffer.buttonLink %>"><%= latestOffer.buttonText %></a>
+        </div>
+    </div>
+</section>
+
+
+<section class="section">
+    <div class="container center" id="affiliates-container">
+        <h2><%= affiliatesSection.title %></h2>
+        <p class="affiliates-message"><%= affiliatesSection.message %></p>
+        <p><%= affiliatesSection.subMessage %></p>
+        <h3 class="carousel-title"><%= affiliatesSection.affiliatesTitle %></h3>
+        <div class="carousel" role="region" aria-roledescription="carousel" aria-label="<%= affiliatesSection.affiliatesTitle %>">
+            <button type="button" class="carousel-btn carousel-prev" aria-label="Previous partners">&#10094;</button>
+            <ul class="carousel-track" tabindex="0">
+                <% affiliatesSection.affiliates.forEach(function (affiliate) { %>
+                <li class="carousel-slide">
+                    <div class="affiliate-card">
+                        <div class="affiliate-logo">
+                            <img src="<%= asset(affiliate.logo) %>" alt="<%= affiliate.name %> logo" loading="lazy">
+                        </div>
+                        <h4><%= affiliate.name %></h4>
+                        <p><%= affiliate.description %></p>
+                    </div>
+                </li>
+                <% }) %>
+            </ul>
+            <button type="button" class="carousel-btn carousel-next" aria-label="Next partners">&#10095;</button>
+            <div class="carousel-dots"></div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-light">
+    <div class="container">
+        <h2>OUR CLIENTS REVIEW</h2>
+        <div class="testimonial-grid" id="testimonial-container">
+            <% testimonials.forEach(function (t) { %>
+            <figure class="testimonial-card">
+                <blockquote><%= t.message %></blockquote>
+                <figcaption>
+                    <img src="<%= asset(t.image) %>" alt="Photo of <%= t.name %>" loading="lazy">
+                    <span><strong><%= t.name %></strong><br><%= t.position %></span>
+                </figcaption>
+            </figure>
+            <% }) %>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2>NEWS EVENTS</h2>
+        <p class="section-intro">Rural Bank of Bagabag: News, Growth, and Community Events.</p>
+        <div id="news-container">
+            <% news.forEach(function (item) { %>
+            <article class="news-card">
+                <% if (item.image) { %><img src="<%= asset(item.image) %>" alt="<%= item.title %>" loading="lazy"><% } %>
+                <div class="news-card-body">
+                    <time class="news-date"><%= item.date %></time>
+                    <h3><%= item.title %></h3>
+                    <p><%= item.description %></p>
+                    <a href="<%= item.link %>"<% if (item.link.startsWith("http")) { %> target="_blank" rel="noopener"<% } %>>Read more about <%= item.title %></a>
+                </div>
+            </article>
+            <% }) %>
+        </div>
+    </div>
+</section>
+
+<%- include("partials/footer") %>

@@ -1,0 +1,9 @@
+<article class="loan-card">
+    <img src="<%= asset(loan.image) %>" alt="<%= loan.name %>" loading="lazy">
+    <div class="loan-card-body">
+        <span class="badge badge-<%= loan.type.toLowerCase() %>"><%= loan.type %></span>
+        <h3><%= loan.name %></h3>
+        <p><%= loan.description %></p>
+        <a class="btn btn-outline" href="/loans#<%= loan.id %>">Learn more about the <%= loan.name %></a>
+    </div>
+</article>

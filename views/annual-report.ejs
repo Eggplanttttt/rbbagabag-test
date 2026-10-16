@@ -1,0 +1,21 @@
+<%- include("partials/head") %>
+<%- include("partials/header") %>
+
+<%- include("partials/page-banner", { bannerTitle: "Annual Reports", bannerText: "View or download the bank's yearly reports." }) %>
+
+<section class="section">
+    <div class="container" id="report-container">
+        <% reports.forEach(function (report) { %>
+        <article class="report-card">
+            <p class="report-year"><%= report.year %></p>
+            <h2><%= report.title %></h2>
+            <div class="button-row">
+                <a class="btn btn-primary" href="<%= asset(report.file) %>" target="_blank" rel="noopener">View PDF of the <%= report.title %></a>
+                <a class="btn btn-outline" href="<%= asset(report.file) %>" download>Download the <%= report.title %></a>
+            </div>
+        </article>
+        <% }) %>
+    </div>
+</section>
+
+<%- include("partials/footer") %>

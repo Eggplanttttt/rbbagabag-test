@@ -1,0 +1,25 @@
+<%- include("partials/head") %>
+<%- include("partials/header") %>
+
+<%- include("partials/page-banner", { bannerTitle: "ROPA - Properties for Sale", bannerText: "Real and Other Properties Acquired by Rural Bank of Bagabag." }) %>
+
+<section class="section">
+    <div class="container" id="ropa-container">
+        <% properties.forEach(function (property) { %>
+        <article class="ropa-card">
+            <img src="<%= asset(property.image) %>" alt="<%= property.title %>" loading="lazy">
+            <div class="ropa-card-body">
+                <span class="badge badge-category"><%= property.category %></span>
+                <h2><%= property.title %></h2>
+                <p class="ropa-location"><%= property.location %></p>
+                <p><strong>Area:</strong> <%= property.area %></p>
+                <p><%= property.description %></p>
+                <p class="ropa-price">Price: <strong><%= property.price %></strong></p>
+                <a class="btn btn-primary" href="<%= contactLink("ROPA Inquiry: " + property.title) %>">Inquire about <%= property.title %></a>
+            </div>
+        </article>
+        <% }) %>
+    </div>
+</section>
+
+<%- include("partials/footer") %>

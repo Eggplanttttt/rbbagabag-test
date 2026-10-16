@@ -1,0 +1,34 @@
+<%- include("partials/head") %>
+<%- include("partials/header") %>
+
+<%- include("partials/page-banner", { bannerTitle: "Loans", bannerText: "Choose the loan that fits your needs and take the next step toward your financial goals." }) %>
+
+
+<section class="section">
+    <div class="container" id="loan-details-container">
+        <% loans.forEach(function (loan) { %>
+        <article class="loan-detail" id="<%= loan.id %>">
+            <img src="<%= asset(loan.image) %>" alt="<%= loan.name %>" loading="lazy">
+            <div class="loan-detail-body">
+                <span class="badge badge-<%= loan.type.toLowerCase() %>"><%= loan.type %></span>
+                <h2><%= loan.name %></h2>
+                <p><%= loan.description %></p>
+                <h3>Purpose</h3>
+                <p><%= loan.purpose %></p>
+                <h3>Basic requirements</h3>
+                <ul class="check-list">
+                    <% loan.requirements.forEach(function (requirement) { %>
+                    <li><%= requirement %></li>
+                    <% }) %>
+                </ul>
+                <div class="button-row">
+                    <a class="btn btn-primary" href="<%= contactLink(loan.name + " Application") %>">Apply for <%= loan.name %></a>
+                    <a class="btn btn-outline" href="<%= contactLink(loan.name + " Inquiry") %>">Ask about <%= loan.name %></a>
+                </div>
+            </div>
+        </article>
+        <% }) %>
+    </div>
+</section>
+
+<%- include("partials/footer") %>

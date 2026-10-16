@@ -1,0 +1,31 @@
+<%- include("partials/head") %>
+<%- include("partials/header") %>
+
+<%- include("partials/page-banner", { bannerTitle: "Deposits", bannerText: "Keep your money safe and growing with the bank you trust." }) %>
+
+<section class="section">
+    <div class="container">
+        <div class="notice-box" id="deposit-notice">
+            <p><%= notice.text %> <a href="<%= notice.link %>" target="_blank" rel="noopener">Read the PDIC announcement</a></p>
+        </div>
+        <div id="deposit-container">
+            <% deposits.forEach(function (deposit) { %>
+            <article class="deposit-card">
+                <img src="<%= asset(deposit.image) %>" alt="<%= deposit.name %>" loading="lazy">
+                <div class="deposit-card-body">
+                    <h2><%= deposit.name %></h2>
+                    <p><%= deposit.description %></p>
+                    <ul class="check-list">
+                        <% deposit.features.forEach(function (feature) { %>
+                        <li><%= feature %></li>
+                        <% }) %>
+                    </ul>
+                    <a class="btn btn-outline" href="<%= contactLink(deposit.name + " Inquiry") %>">Ask about <%= deposit.name %></a>
+                </div>
+            </article>
+            <% }) %>
+        </div>
+    </div>
+</section>
+
+<%- include("partials/footer") %>

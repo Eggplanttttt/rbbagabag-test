@@ -1,0 +1,52 @@
+<%- include("partials/head") %>
+<%- include("partials/header") %>
+
+<%- include("partials/page-banner", { bannerTitle: "Contact Us", bannerText: "Questions about a loan, a deposit, or a property? Send us a message or call us." }) %>
+
+<section class="section">
+    <div class="container contact-layout">
+        <div id="contact-info">
+            <h2>Contact information</h2>
+            <h3>Address</h3>
+            <p><% bankInfo.addressLines.forEach(function (line, i) { %><%= line %><% if (i < bankInfo.addressLines.length - 1) { %><br><% } %><% }) %></p>
+            <h3>Telephone</h3>
+            <p><a href="<%= phoneLink(bankInfo.phone) %>"><%= bankInfo.phone %></a></p>
+            <h3>Mobile</h3>
+            <p><a href="<%= phoneLink(bankInfo.mobile) %>"><%= bankInfo.mobile %></a></p>
+            <h3>Email</h3>
+            <p><% bankInfo.emails.forEach(function (email) { %><a href="mailto:<%= email %>"><%= email %></a><br><% }) %></p>
+        </div>
+
+        <div>
+            <h2>Send an inquiry</h2>
+            <form class="contact-form" id="contact-form" method="post" action="/contact" novalidate>
+                <label for="name">Your name</label>
+                <input type="text" id="name" name="name" autocomplete="name" required maxlength="100" value="<%= values.name %>"<% if (errors.name) { %> aria-invalid="true"<% } %> aria-describedby="name-error">
+                <p class="field-error" id="name-error"><%= errors.name || "" %></p>
+
+                <label for="email">Your email</label>
+                <input type="email" id="email" name="email" autocomplete="email" required maxlength="150" value="<%= values.email %>"<% if (errors.email) { %> aria-invalid="true"<% } %> aria-describedby="email-error">
+                <p class="field-error" id="email-error"><%= errors.email || "" %></p>
+
+                <label for="subject">Subject of your inquiry</label>
+                <input type="text" id="subject" name="subject" required maxlength="150" value="<%= values.subject %>"<% if (errors.subject) { %> aria-invalid="true"<% } %> aria-describedby="subject-error">
+                <p class="field-error" id="subject-error"><%= errors.subject || "" %></p>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required maxlength="3000"<% if (errors.message) { %> aria-invalid="true"<% } %> aria-describedby="message-error"><%= values.message %></textarea>
+                <p class="field-error" id="message-error"><%= errors.message || "" %></p>
+
+                
+                <div style="position:absolute;left:-10000px;" aria-hidden="true">
+                    <label for="website">Leave this field empty</label>
+                    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <button class="btn btn-primary" type="submit">Send inquiry</button>
+                <p class="form-status<%= status ? (status.type === "error" ? " form-status-error" : " form-status-ok") : "" %>" id="form-status" role="status"><%= status ? status.text : "" %></p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<%- include("partials/footer") %>

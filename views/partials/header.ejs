@@ -1,0 +1,43 @@
+
+<div id="site-header">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="top-bar">
+        <div class="container top-bar-inner">
+            <span><%= bankInfo.since %></span>
+            <a href="<%= phoneLink(bankInfo.phone) %>">Call us: <%= bankInfo.phone %></a>
+        </div>
+    </div>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="/" class="brand">
+                <img src="<%= asset(bankInfo.logo) %>" alt="<%= bankInfo.logoAlt %>" width="48" height="48">
+                <span class="brand-name"><%= bankInfo.name %></span>
+            </a>
+            <button class="menu-button" aria-expanded="false" aria-controls="main-menu">
+                <span class="menu-button-text">Menu</span>
+            </button>
+            <nav aria-label="Main menu">
+                <ul class="main-menu" id="main-menu">
+                    <% navigationLinks.forEach(function (item) {
+                        const isCurrent = item.link === currentPath; %>
+                        <% if (item.dropdownFromLoans) { %>
+                        <li class="has-dropdown">
+                            <a href="<%= item.link %>" class="nav-link<%= isCurrent ? " active" : "" %>"<% if (isCurrent) { %> aria-current="page"<% } %>><%= item.label %></a>
+                            <button class="dropdown-toggle" aria-expanded="false" aria-label="Show <%= item.label %> menu"></button>
+                            <ul class="dropdown">
+                                <% menuLoans.forEach(function (loan) { %>
+                                <li><a href="/loans#<%= loan.id %>"><%= loan.name %></a></li>
+                                <% }) %>
+                            </ul>
+                        </li>
+                        <% } else { %>
+                        <li><a href="<%= item.link %>" class="nav-link<%= isCurrent ? " active" : "" %>"<% if (isCurrent) { %> aria-current="page"<% } %>><%= item.label %></a></li>
+                        <% } %>
+                    <% }) %>
+                </ul>
+            </nav>
+        </div>
+    </header>
+</div>
+
+<main id="main-content">
