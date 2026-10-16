@@ -18,6 +18,7 @@ exports.loans = function (req, res) {
         title: "Rural Bank of Bagabag | Loans",
         description: "Loans from Rural Bank of Bagabag: agricultural, consumption, housing, salary, SME, auto, motorcycle, and back-to-back loans.",
         pageCss: ["loans"],
+        pageJs: ["loan-application"],
         loans: Loan.all()
     });
 };

@@ -13,6 +13,7 @@ router.get("/", home.index);
 router.get("/about", pages.about);
 router.get("/ropa", pages.ropa);
 router.get("/loans", pages.loans);
+router.use("/loan-applications", require("./loanApplications"));
 router.get("/deposits", pages.deposits);
 router.get("/annual-report", pages.annualReport);
 

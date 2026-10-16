@@ -1,0 +1,9 @@
+npm.cmd run dev
+
+
+
+to push to GitHub
+
+git add .
+git commit -m "Updated website"
+git push

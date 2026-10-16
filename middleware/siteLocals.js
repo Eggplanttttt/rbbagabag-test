@@ -3,6 +3,8 @@
 const siteModel = require("../models/siteModel");
 const Loan = require("../models/loanModel");
 const News = require("../models/newsModel");
+const fs = require("node:fs");
+const path = require("node:path");
 
 
 function phoneLink(phoneNumber) {
@@ -29,6 +31,10 @@ module.exports = function siteLocals(req, res, next) {
     res.locals.currentPath = req.path.length > 1 ? req.path.replace(/\/+$/, "") : req.path;
 
     res.locals.asset = asset;
+    res.locals.scriptAsset = function (name) {
+        const file = path.join(__dirname, "..", "public", "js", name + ".js");
+        return "/js/" + name + ".js?v=" + fs.statSync(file).mtimeMs;
+    };
     res.locals.phoneLink = phoneLink;
     res.locals.contactLink = contactLink;
 

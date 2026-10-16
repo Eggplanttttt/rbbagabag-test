@@ -48,10 +48,14 @@
 </div>
 
 
+<button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top" hidden>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 12 6-6 6 6M12 6v13"/></svg>
+</button>
+<script src="<%= scriptAsset('back-to-top') %>" defer></script>
 <script src="/js/navigation.js" defer></script>
 <script src="/js/image-fallback.js" defer></script>
 <% pageJs.forEach(function (name) { %>
-<script src="/js/<%= name %>.js" defer></script>
+<script src="<%= scriptAsset(name) %>" defer></script>
 <% }) %>
 </body>
 </html>

@@ -17,3 +17,9 @@
 
 @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
+
+.back-to-top {position: fixed;right: 1.5rem;bottom: 1.5rem;z-index: 100;display: grid;place-items: center;width: 48px;height: 48px;padding: 0;border: 1px solid rgba(255,255,255,0.4);border-radius: 50%;background: var(--primary-color);color: #fff;box-shadow: 0 6px 20px rgba(107,15,26,0.25);cursor: pointer;transition: background 0.2s, transform 0.2s;}
+.back-to-top[hidden] {display: none;}
+.back-to-top:hover {background: var(--primary-light);transform: translateY(-3px);}
+@media (max-width: 600px) {.back-to-top {right: 1rem;bottom: 1rem;}}
+@media (prefers-reduced-motion: reduce) {.back-to-top {transition: none;}}

@@ -36,3 +36,58 @@
 
 
 @media (max-width: 768px) { .loan-detail { grid-template-columns: 1fr; gap: 1.25rem; } }
+
+body.application-open {overflow: hidden;}
+.application-warning-anchor {position: sticky;top: 0;height: 0;z-index: 10;}
+.application-warning {position: absolute;top: 12px;left: 16px;right: 16px;padding: 1rem 1.25rem;border: 1px solid #e1ba57;border-left: 4px solid #b78212;border-radius: 10px;background: #fff7df;color: #664407;box-shadow: 0 8px 25px #24180026;font-size: 0.9rem;animation: application-warning-fade 4s both;}
+.application-warning[hidden] {display: none;}
+@keyframes application-warning-fade {0% {opacity: 0;transform: translateY(-8px);}8%,85% {opacity: 1;transform: translateY(0);}100% {opacity: 0;transform: translateY(-8px);}}
+@media (prefers-reduced-motion: reduce) {.application-warning {animation: none;}}
+.application-success {width: min(460px, calc(100% - 2rem));max-height: 90dvh;padding: 2.5rem 2rem;border: 1px solid #eadfe1;border-top: 4px solid var(--primary-color);border-radius: 20px;background: #fff;color: var(--text-color);text-align: center;box-shadow: 0 30px 100px #21070d40;}
+.application-success::backdrop {background: rgba(25,10,15,0.55);backdrop-filter: blur(5px);}
+.application-success-icon {display: grid;place-items: center;width: 64px;height: 64px;margin: 0 auto 1.25rem;border-radius: 50%;background: #eaf5ee;color: #257548;font-size: 2rem;}
+.application-success h2 {font-size: 1.75rem;}
+.application-success p {color: var(--muted-text);font-size: 0.95rem;}
+.application-next-step {display: block;margin: 1rem 0;padding: 1rem;background: #fff5d6;border-left: 4px solid var(--accent-color);border-radius: 8px;color: var(--primary-color);font-weight: 700;}
+.application-success .btn {border-radius: 8px;width: 100%;cursor: pointer;}
+.application-modal button:disabled {opacity: 0.6;cursor: wait;}
+.application-modal {width: min(920px, calc(100% - 2rem));max-height: 90dvh;padding: 0;border: 1px solid #eadfe1;border-radius: 20px;color: var(--text-color);background: #fff;box-shadow: 0 30px 100px #21070d40;}
+.application-modal::backdrop {background: rgba(25, 10, 15, 0.55);backdrop-filter: blur(5px);}
+.application-modal {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.938), rgba(255, 255, 255, 0.836)), url("../assets/images/bank-logo.svg");
+    background-position: center;
+    background-size: auto, min(65vw, 440px) auto;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.application-header {display: flex;justify-content: space-between;align-items: center;gap: 1rem;padding: 1.5rem 2rem;background: #fff;border-bottom: 1px solid var(--border-color);border-top: 5px solid var(--primary-color);}
+.application-header h2 {font-size: 1.8rem;margin: 0;}
+.application-eyebrow {font-size: 0.7rem;font-weight: 700;letter-spacing: 0.12em;text-transform: uppercase;color: var(--muted-text);margin-bottom: 0.35rem;}
+.application-close {display: grid;place-items: center;flex-shrink: 0;width: 40px;height: 40px;border: 1px solid #eadfe1;border-radius: 50%;background: #faf5f5;color: var(--primary-color);font-size: 1.6rem;cursor: pointer;}
+#application-intro {margin: 1.5rem 2rem;color: var(--muted-text);font-size: 0.9rem;}
+#application-form {padding: 0 2rem 1.5rem;}
+.application-grid {display: grid;grid-template-columns: repeat(2, minmax(0, 1fr));gap: 1.1rem 1.25rem;}
+.application-modal label {display: flex;flex-direction: column;gap: 0.4rem;font-size: 0.85rem;font-weight: 600;color: #4b3036;}
+.application-modal input,.application-modal select,.application-modal textarea {width: 100%;min-width: 0;border: 1px solid #dfd5d7;border-radius: 8px;background: #fff;padding: 0.75rem;font: inherit;font-weight: 400;color: var(--text-color);}
+.application-modal input[readonly] {background: #f7f1f2;color: var(--primary-color);}
+.application-modal textarea {resize: vertical;}
+.application-modal fieldset {min-width: 0;margin: 1.75rem 0;padding: 1.25rem;border: 1px solid #eadfe1;border-radius: 12px;}
+.application-modal legend {padding: 0 0.5rem;font-family: var(--heading-font);font-weight: 700;color: var(--primary-color);font-size: 1.15rem;}
+.application-wide {grid-column: 1 / -1;}
+.application-hint {font-size: 0.8rem;font-weight: 400;color: var(--muted-text);}
+.application-photo {width: 100px;max-height: 130px;object-fit: cover;border-radius: 8px;}
+.application-photo[hidden] {display: none;}
+.beneficiary-entry {padding-bottom: 1rem;margin-bottom: 1rem;border-bottom: 1px solid #eadfe1;}
+.beneficiary-remove {margin-top: 0.75rem;border: 0;background: transparent;color: var(--primary-color);text-decoration: underline;cursor: pointer;font: inherit;font-size: 0.8rem;}
+.application-actions {display: flex;justify-content: flex-end;gap: 0.75rem;padding-top: 1rem;border-top: 1px solid #eadfe1;}
+.application-modal .btn {font-family: var(--body-font);border-radius: 8px;cursor: pointer;}
+#application-status {margin: 1rem 0 0;color: var(--primary-color);}
+@media (max-width: 600px) {
+    .application-modal {width: calc(100% - 1rem);max-height: 95dvh;border-radius: 14px;}
+    .application-header {padding: 1rem;}
+    #application-intro {margin: 1rem;}
+    #application-form {padding: 0 1rem 1rem;}
+    .application-grid {grid-template-columns: 1fr;}
+    .application-modal fieldset {padding: 1rem;}
+    .application-actions {flex-wrap: wrap;}
+}

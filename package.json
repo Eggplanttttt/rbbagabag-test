@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "db:setup": "node scripts/setup-loan-databases.js"
   },
   "engines": {
     "node": "24.x"
@@ -14,6 +15,7 @@
   "dependencies": {
     "ejs": "^3.1.10",
     "express": "^4.21.2",
+    "mysql2": "^3.24.6",
     "nodemailer": "^6.9.16"
   },
   "license": "UNLICENSED"

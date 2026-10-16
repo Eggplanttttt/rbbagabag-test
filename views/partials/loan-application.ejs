@@ -1,0 +1,90 @@
+<dialog class="application-modal" id="loan-application" aria-labelledby="application-title" aria-describedby="application-intro">
+    <div class="application-warning-anchor"><div id="application-warning" class="application-warning" role="alert" hidden></div></div>
+    <header class="application-header">
+        <div>
+            <p class="application-eyebrow">Rural Bank of Bagabag</p>
+            <h2 id="application-title">Loan application</h2>
+        </div>
+        <button type="button" class="application-close" data-close-application aria-label="Close application">&times;</button>
+    </header>
+    <p id="application-intro">Customer information file (individual). Complete your details and submit your loan application for review.</p>
+    <form id="application-form">
+        <div class="application-grid">
+            <label>Loan type<input name="loanType" id="application-loan-type" readonly></label>
+        </div>
+        <fieldset>
+            <legend>Client details</legend>
+            <div class="application-grid">
+                <% const clientFields = [
+                    ["clientName", "Full name (Surname, Given Name, Middle Name)", "text", true],
+                    ["nationality", "Nationality", "text", true],
+                    ["birthDate", "Birth date", "date", true],
+                    ["birthPlace", "Birthplace", "text", true],
+                    ["homePhone", "Home / business phone", "tel", false],
+                    ["mobile", "Mobile number", "tel", true],
+                    ["alternateMobile", "Alternate mobile number", "tel", false],
+                    ["email", "Email address", "email", false],
+                    ["primaryId", "Primary ID type and number", "text", true],
+                    ["secondaryId", "Secondary ID type and number", "text", false],
+                    ["emergencyName", "Emergency contact name", "text", true],
+                    ["emergencyPhone", "Emergency contact number", "tel", true]
+                ]; %>
+                <% clientFields.forEach(function (field) { %>
+                <label><%= field[1] %><% if (field[3]) { %> *<% } %><input name="<%= field[0] %>" type="<%= field[2] %>" maxlength="200" <%= field[3] ? "required" : "" %>></label>
+                <% }) %>
+                <label>Gender *<select name="gender" required><option value="">Select gender</option><option>Female</option><option>Male</option><option>Prefer to self-describe</option><option>Prefer not to say</option></select></label>
+                <label>Civil status *<select name="civilStatus" required><option value="">Select civil status</option><option>Single</option><option>Married</option><option>Widowed</option><option>Separated</option><option>Other</option></select></label>
+                <label class="application-wide">Present address *<textarea name="presentAddress" rows="2" maxlength="500" required></textarea></label>
+                <label class="application-wide">Permanent address *<textarea name="permanentAddress" rows="2" maxlength="500" required></textarea></label>
+                <label class="application-wide">Client photo (optional)<input type="file" id="application-photo" accept="image/jpeg,image/png,image/webp"><span class="application-hint">JPG, PNG or WebP, up to 5 MB.</span></label>
+                <img id="application-photo-preview" class="application-photo" alt="Client photo preview" hidden>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Beneficiaries</legend>
+            <div id="application-beneficiaries"></div>
+            <button class="btn btn-outline" type="button" id="add-beneficiary">+ Add beneficiary</button>
+        </fieldset>
+        <fieldset>
+            <legend>Source of fund</legend>
+            <div class="application-grid">
+                <label>Source of fund *<select name="fundSource" required><option value="">Select source</option><option>Employment</option><option>Business</option><option>Farming</option><option>Remittance</option><option>Pension</option><option>Others</option></select></label>
+                <label>Particulars *<input name="fundParticulars" required maxlength="300" placeholder="e.g. Farming and remittance"></label>
+                <label>Gross monthly income (PHP) *<input name="monthlyIncome" type="number" min="0" step="0.01" required></label>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Other details</legend>
+            <div class="application-grid">
+                <label class="application-wide">Mother’s full maiden name *<input name="motherName" required maxlength="200"></label>
+            </div>
+        </fieldset>
+        <p class="application-hint">* Required fields. Bank staff will complete internal tags and update records.</p>
+        <footer class="application-actions">
+            <button class="btn btn-outline" type="button" data-close-application>Close</button>
+            <button class="btn btn-primary" type="submit">Submit application</button>
+        </footer>
+    </form>
+</dialog>
+<dialog class="application-success" id="application-success" aria-labelledby="application-success-title" aria-describedby="application-success-message">
+    <div class="application-success-icon" aria-hidden="true">&#10003;</div>
+    <h2 id="application-success-title">Application submitted successfully</h2>
+    <p id="application-success-message">Your application has been received. <strong class="application-next-step">Please visit Rural Bank of Bagabag with your valid ID and required documents to continue processing your loan.</strong> All applications are subject to the bank’s review and approval.</p>
+    <button class="btn btn-primary" type="button" id="application-success-done" autofocus>Done</button>
+</dialog>
+<template id="beneficiary-template">
+    <div class="beneficiary-entry">
+        <div class="application-grid">
+            <% [["Name", "text"], ["Relationship", "text"], ["Nationality", "text"], ["Gender", "text"], ["Birthdate", "date"], ["Birthplace", "text"], ["Contact number", "tel"]].forEach(function (field) { %>
+            <label><%= field[0] %>
+                <% if (field[0] === "Gender") { %>
+                <select data-beneficiary-field="Gender"><option value="">Select gender</option><option>Female</option><option>Male</option><option>Prefer to self-describe</option><option>Prefer not to say</option></select>
+                <% } else { %>
+                <input type="<%= field[1] %>" data-beneficiary-field="<%= field[0] %>" maxlength="200">
+                <% } %>
+            </label>
+            <% }) %>
+        </div>
+        <button class="beneficiary-remove" type="button">Remove beneficiary</button>
+    </div>
+</template>

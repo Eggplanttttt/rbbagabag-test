@@ -1,40 +1,71 @@
 <%- include("partials/head") %>
 <%- include("partials/header") %>
 
-<%- include("partials/page-banner", { bannerTitle: "Contact Us", bannerText: "Questions about a loan, a deposit, or a property? Send us a message or call us." }) %>
+<section class="contact-hero">
+    <div class="container">
+        <p class="contact-eyebrow">LET’S CONNECT</p>
+        <h1>How can we help you?</h1>
+        <p>Questions about a loan, a deposit, or a property? We’re here to help you take the next step.</p>
+    </div>
+</section>
 
-<section class="section">
+<section class="section contact-section">
     <div class="container contact-layout">
         <div id="contact-info">
-            <h2>Contact information</h2>
+            <p class="contact-eyebrow">CONTACT US</p>
+            <h2>A conversation starts here.</h2>
+            <p class="contact-intro">Visit our branch, give us a call, or reach out by email.</p>
+            <div class="contact-method">
+            <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+            <div>
             <h3>Address</h3>
             <p><% bankInfo.addressLines.forEach(function (line, i) { %><%= line %><% if (i < bankInfo.addressLines.length - 1) { %><br><% } %><% }) %></p>
+            </div></div>
+            <div class="contact-method">
+            <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 3 4 1 1 5-3 2a15 15 0 0 0 6 6l2-3 5 1 1 4c-1 5-8 1-12-3S1 4 5 3Z"/></svg></span>
+            <div>
             <h3>Telephone</h3>
             <p><a href="<%= phoneLink(bankInfo.phone) %>"><%= bankInfo.phone %></a></p>
             <h3>Mobile</h3>
             <p><a href="<%= phoneLink(bankInfo.mobile) %>"><%= bankInfo.mobile %></a></p>
+            </div></div>
+            <div class="contact-method">
+            <span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 7 9 6 9-6"/></svg></span>
+            <div>
             <h3>Email</h3>
             <p><% bankInfo.emails.forEach(function (email) { %><a href="mailto:<%= email %>"><%= email %></a><br><% }) %></p>
+            </div></div>
         </div>
 
-        <div>
+        <div class="contact-inquiry">
+            <p class="contact-eyebrow">WE’RE LISTENING</p>
             <h2>Send an inquiry</h2>
+            <p class="contact-form-intro">Tell us what you need help with. All fields below are required.</p>
             <form class="contact-form" id="contact-form" method="post" action="/contact" novalidate>
+                <div class="contact-form-row">
+                <div class="contact-field">
                 <label for="name">Your name</label>
                 <input type="text" id="name" name="name" autocomplete="name" required maxlength="100" value="<%= values.name %>"<% if (errors.name) { %> aria-invalid="true"<% } %> aria-describedby="name-error">
                 <p class="field-error" id="name-error"><%= errors.name || "" %></p>
+                </div>
 
+                <div class="contact-field">
                 <label for="email">Your email</label>
                 <input type="email" id="email" name="email" autocomplete="email" required maxlength="150" value="<%= values.email %>"<% if (errors.email) { %> aria-invalid="true"<% } %> aria-describedby="email-error">
                 <p class="field-error" id="email-error"><%= errors.email || "" %></p>
+                </div></div>
 
+                <div class="contact-field">
                 <label for="subject">Subject of your inquiry</label>
                 <input type="text" id="subject" name="subject" required maxlength="150" value="<%= values.subject %>"<% if (errors.subject) { %> aria-invalid="true"<% } %> aria-describedby="subject-error">
                 <p class="field-error" id="subject-error"><%= errors.subject || "" %></p>
+                </div>
 
+                <div class="contact-field">
                 <label for="message">Message</label>
                 <textarea id="message" name="message" required maxlength="3000"<% if (errors.message) { %> aria-invalid="true"<% } %> aria-describedby="message-error"><%= values.message %></textarea>
                 <p class="field-error" id="message-error"><%= errors.message || "" %></p>
+                </div>
 
                 
                 <div style="position:absolute;left:-10000px;" aria-hidden="true">
@@ -42,7 +73,10 @@
                     <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
                 </div>
 
-                <button class="btn btn-primary" type="submit">Send inquiry</button>
+                <div class="contact-submit-row">
+                    <p>Use an email address where we can reach you.</p>
+                    <button class="btn btn-primary" type="submit">Send inquiry <span aria-hidden="true">&rarr;</span></button>
+                </div>
                 <p class="form-status<%= status ? (status.type === "error" ? " form-status-error" : " form-status-ok") : "" %>" id="form-status" role="status"><%= status ? status.text : "" %></p>
             </form>
         </div>

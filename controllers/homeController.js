@@ -12,7 +12,7 @@ exports.index = function (req, res) {
         title: "Rural Bank of Bagabag | Home",
         description: "Rural Bank of Bagabag (N.V.), Inc. - your trusted local bank in Bagabag, Nueva Vizcaya since 1968. Loans, deposits, remittance, and more.",
         pageCss: ["home"],
-        pageJs: ["carousel"],
+        pageJs: ["carousel", "loan-filters"],
 
         hero: site.heroContent,
         financialNeeds: site.financialNeeds,
